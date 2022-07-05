@@ -3,6 +3,7 @@ package com.hyvercode.demo.controller;
 import com.hyvercode.demo.helpers.ResponseCode;
 import com.hyvercode.demo.helpers.ResponseHandler;
 import com.hyvercode.demo.model.entity.Employee;
+import com.hyvercode.demo.model.request.EmployeeRequest;
 import com.hyvercode.demo.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,12 @@ public class EmployeeController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> create(@RequestBody Employee employee) {
+    public ResponseEntity<Object> create(@RequestBody EmployeeRequest employeeRequest) {
+        Employee employee = Employee.builder()
+                .firstName(employeeRequest.getFirstName())
+                .lastName(employeeRequest.getLastName())
+                .email(employeeRequest.getEmail())
+                .build();
         return ResponseHandler.baseResponse(
                 HttpStatus.CREATED,
                 employeeService.create(employee),

@@ -1,5 +1,6 @@
 package com.hyvercode.demo.model.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Builder
 @Table(name="employees")
 public class Employee implements Serializable {
     @Id
