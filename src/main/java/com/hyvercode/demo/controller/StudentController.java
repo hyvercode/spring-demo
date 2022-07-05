@@ -43,7 +43,6 @@ public class StudentController {
      */
     @GetMapping("/student/gc/{firstName}")
     public List<Student> getStudentByNameGC(@PathVariable("firstName") String firstName){
-        System.gc();
         return students
                 .stream()
                 .filter(s->s.getFirstName().equals(firstName))

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -51,7 +53,13 @@ public class EmployeeController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> update(@PathVariable("id") long id, @RequestBody Employee employee) {
+    public ResponseEntity<Object> update(@PathVariable("id") long id, @RequestBody EmployeeRequest employeeRequest) {
+        Employee employee = Employee.builder()
+                .id(id)
+                .firstName(employeeRequest.getFirstName())
+                .lastName(employeeRequest.getLastName())
+                .email(employeeRequest.getEmail())
+                .build();
         return ResponseHandler.baseResponse(
                 HttpStatus.CREATED,
                 employeeService.update(id, employee),

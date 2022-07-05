@@ -11,9 +11,6 @@ import java.util.Map;
 
 public class ResponseHandler {
 
-    public ResponseHandler() {
-    }
-
     public static ResponseEntity<Object> baseResponse(HttpStatus httpStatus, Object responseObj, int code, String message) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
